@@ -1,10 +1,14 @@
 package com.java.databases.jdbc;
 
+import java.lang.StackWalker.Option;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class CRUDHandlerClass {
 
@@ -55,24 +59,28 @@ public class CRUDHandlerClass {
 		}
 	}
 
-	protected static void retreiveUser(int userID) {
+	protected static Optional<Map<String, String>> retreiveUser(int userID) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
+			Map <String, String> resultSetMap = new HashMap<>();
 			Connection connection = DBConnectionHandler.DBconnectivityHandler();
 			PreparedStatement prepareStatement = connection.prepareStatement("SELECT * FROM registration WHERE ID ="+userID);
 			ResultSet resultSet = prepareStatement.executeQuery();
+			
 			while(resultSet.next()) {
-				System.out.println(resultSet.getString("UserName"));
-				System.out.println(resultSet.getString("Firstname"));
-				System.out.println(resultSet.getString("LastName"));
-				System.out.println(resultSet.getString("Email"));
-				System.out.println(resultSet.getString("Email"));
+				resultSetMap.put("Username:", resultSet.getString("UserName"));
+				resultSetMap.put("Firstname:",resultSet.getString("Firstname"));
+				resultSetMap.put("Lastname:",resultSet.getString("LastName"));
+				resultSetMap.put("Email:",resultSet.getString("Email"));
 			}
 			resultSet.close();
-			
+			connection.close();
+		return Optional.of(resultSetMap);
 		} catch (Exception e) {
-			// TODO: handle exception
+		
+			
 		}
+		return Optional.empty();
 		
 	}
 	

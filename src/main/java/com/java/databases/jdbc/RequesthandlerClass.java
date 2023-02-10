@@ -1,6 +1,8 @@
 package com.java.databases.jdbc;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.util.stream.Stream;
 import java.util.*;
 
@@ -8,6 +10,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.stream.*;
+
+import com.mysql.cj.util.Util;
 
 /**
  * Servlet implementation class RequesthandlerClass
@@ -28,6 +33,7 @@ public class RequesthandlerClass extends HttpServlet {
 		
 
 		String crudCall = request.getParameter("crudCall");
+		
 		switch (crudCall) {
 		case "newuser": {
 			Map requestParameterMap = request.getParameterMap();
@@ -42,8 +48,28 @@ public class RequesthandlerClass extends HttpServlet {
 			System.out.println(formparameters);
 			
 			CRUDHandlerClass.addUser(formparameters);
+			break;
 			}
-		case "search": {}
+		case "search": {
+			int parameter = Integer.parseInt(request.getParameter("UserID"));
+			Optional<Map<String, String>> retreiveUser = CRUDHandlerClass.retreiveUser(parameter);
+			retreiveUser.stream().forEach(x-> {
+					x.entrySet().stream().forEach(e->{
+					try {
+						response.getWriter().println(e.getKey()+"= "+e.getValue());
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					});
+
+			});
+			
+			
+			
+			break;
+			
+		}
 		case "login": {}
 		case "delete": {}
 		case "update": {}
