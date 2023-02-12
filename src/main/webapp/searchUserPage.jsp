@@ -37,9 +37,13 @@
     			     url:'RequesthandlerClass',
     			     data: $("#searchForm").serialize(),
     			     type: 'POST',
-    			     success: function (data, textStatust, jqHXR) {
+    			     success: function (data, textStatus, jqHXR) {
     			            $('#result').html(data);
-    			    }
+    			    },
+    			    error: function (jqHXR, textStatus, errorThrown ) {
+			            $('#result').html("an error has occured!!");
+			    }
+    			    
     			});
     		   
     	   })

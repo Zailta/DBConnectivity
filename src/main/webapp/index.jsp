@@ -21,10 +21,6 @@
           <tr>
             <td><a href="addNewUserPage.jsp">Add New User</a></td>
           </tr>
-          <tr>
-            <td><a href="loginPage.jsp">Login User </a></td>
-            </tr>
-          <tr>
             <td><a href="searchUserPage.jsp">Search User</a></td>
            </tr>
            <tr>

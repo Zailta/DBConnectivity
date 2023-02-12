@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<form method = "post" action = "RequesthandlerClass">
+	<form method = "post" action = "RequesthandlerClass" id  = "loginForm">
 	<table>
 			<tr>
 				<td>UserName:</td>
@@ -12,7 +12,7 @@
 
 			<tr>
 				<td>Password:</td>
-				<td><input type="password" name="firstName"></td>
+				<td><input type="password" name="password"></td>
 			</tr>
 			<tr>
 				<td></td>

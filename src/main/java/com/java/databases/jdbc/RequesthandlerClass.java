@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.stream.*;
 
+import com.mysql.cj.Session;
 import com.mysql.cj.util.Util;
 
 /**
@@ -46,8 +47,13 @@ public class RequesthandlerClass extends HttpServlet {
 				formparameters.add(value);
 			}
 			System.out.println(formparameters);
-			
-			CRUDHandlerClass.addUser(formparameters);
+			Boolean addUser = CRUDHandlerClass.addUser(formparameters);
+			if(addUser) {
+			response.getWriter().println("The data has been entered successfully!");
+			}
+			else {
+				response.getWriter().println("The data Insertion Failed, UserName already exists in DB!");
+			}
 			break;
 			}
 		case "search": {
@@ -70,9 +76,68 @@ public class RequesthandlerClass extends HttpServlet {
 			break;
 			
 		}
-		case "login": {}
-		case "delete": {}
-		case "update": {}
+		case "login": {
+			String username = request.getParameter("UserName");
+			String password = request.getParameter("password");
+			request.getSession().setAttribute("userName", username);
+			Boolean loginuserFlag = CRUDHandlerClass.loginuser(username, password);
+			if(loginuserFlag) {
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+				}
+				else {
+					response.getWriter().println("Login failure!");
+				}
+				break;
+			
+		}
+		case "delete": {
+			String UserName = (String)request.getSession().getAttribute("userName");
+			
+			if(UserName.equalsIgnoreCase("admin")) {
+				
+				Boolean deleteUser = CRUDHandlerClass.deleteUser(Integer.parseInt(request.getParameter("userId")), request.getParameter("userName"));
+				if(deleteUser) {
+				response.getWriter().println("User deleted Successfully!");
+				}
+				else {
+					response.getWriter().println("User does not exist in DB");
+				}
+			}
+			else {
+				response.getWriter().println("You do not have the required priveleges to perform the operation");
+			}
+			
+			break;
+		}
+		case "update": {
+			String UserName = (String)request.getSession().getAttribute("userName");
+			
+			if(UserName.equalsIgnoreCase("admin")) {
+				
+				
+				
+				
+			
+				
+				
+				Boolean updateUser = CRUDHandlerClass.updateUser(request.getParameter("parameter"), 
+						request.getParameter("updatedValue"), 
+						Integer.parseInt(request.getParameter("userId")),
+						request.getParameter("userName"));
+			if(updateUser) {
+				response.getWriter().println("User Updated Successfully!");
+				}
+				else {
+					response.getWriter().println("User does not exist in DB");
+				}
+			}
+			else {
+				response.getWriter().println("You do not have the required priveleges to perform the operation");
+			}
+			
+			break;
+			
+		}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + crudCall);
 		}
