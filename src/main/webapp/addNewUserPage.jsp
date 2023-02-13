@@ -4,70 +4,109 @@
 <html>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="RequesthandlerClass" method="POST" id = "addnewuserForm">
-		<table>
-			<tr>
-				<td>UserName:</td>
-				<td><input type="text" name="UserName"></td>
-			</tr>
+	<div class="container">
+		<div class="row">
+			<div class="col  m6 offset-m3">
+				<div class="card">
+					<div class="card-content">
+						<div class="form center-align">
+							<form action="RequesthandlerClass" method="POST" id="addnewuserForm" enctype="multipart/form-data">
+								<table>
+									<tr>
+										<td>UserName:</td>
+										<td><input type="text" name="UserName"></td>
+									</tr>
 
-			<tr>
-				<td>First Name:</td>
-				<td><input type="text" name="firstName"></td>
-			</tr>
+									<tr>
+										<td>First Name:</td>
+										<td><input type="text" name="firstName"></td>
+									</tr>
 
-			<tr>
-				<td>Last Name:</td>
-				<td><input type="text" name="lastName" /></td>
-			</tr>
+									<tr>
+										<td>Last Name:</td>
+										<td><input type="text" name="lastName" /></td>
+									</tr>
 
-			<tr>
-				<td>Password:</td>
-				<td><input type="password" name="password" /></td>
-			</tr>
+									<tr>
+										<td>Password:</td>
+										<td><input type="password" name="password" /></td>
+									</tr>
 
-			<tr>
-				<td>Email:</td>
-				<td><input type="email" name="email" /></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" value="Submit" /></td>
-			</tr>
-		</table>
-		<input type="hidden" name="crudCall" value="newuser">
-	</form>
-		 <br/>
-	  <br/>
-	 <h3 id="result"></h3>
+									<tr>
+										<td>Email:</td>
+										<td><input type="email" name="email" /></td>
+									</tr>
+									<tr>
+										<td>Picture:</td>
+										<td>
+
+											<div class="file-field input-field">
+												<div class="btn">
+													<span>File</span> <input name = "image" type="file">
+												</div>
+												<div class="file-path-wrapper">
+													<input class="file-path validate" type="text">
+												</div>
+											</div>
+
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><button type="submit" class="btn  purple accent-4" >Submit</button></td>
+									</tr>
+								</table>
+									<p class="flow-text" id="result"></p>
+								<input type="hidden" name="crudCall" value="newuser">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br />
+	<br />
+
 
 	<script>
-       $(document).ready(function(){
-    	   console.log("page is here");
-    	   $("#addnewuserForm").on('submit', function(event){
-    		   event.preventDefault();
-    		  
-    		   $.ajax({
-    			     url:'RequesthandlerClass',
-    			     data: $("#addnewuserForm").serialize(),
-    			     type: 'POST',
-    			     success: function (data, textStatus, jqHXR) {
-    			            $('#result').html(data);
-    			    },
-    			    error: function (jqHXR, textStatus, errorThrown ) {
-			            $('#result').html("an error has occured!!");
-			    }
-    			    
-    			});
-    		   
-    	   })
-       })
-      </script>
+		$(document).ready(function() {
+			console.log("page is here");
+			$("#addnewuserForm").on('submit', function(event) {
+				event.preventDefault();
+				let formData = new FormData(this);
+
+				$.ajax({
+					url : 'RequesthandlerClass',
+					data : formData,
+					type : 'POST',
+					success : function(data, textStatus, jqHXR) {
+						$('#result').html(data);
+					},
+					error : function(jqHXR, textStatus, errorThrown) {
+						$('#result').html("an error has occured!!");
+					},
+					processData: false,
+					contentType: false
+
+				});
+
+			})
+		})
+	</script>
 
 </body>
 </html>

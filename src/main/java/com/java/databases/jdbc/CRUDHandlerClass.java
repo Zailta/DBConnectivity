@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.servlet.http.Part;
+
 public class CRUDHandlerClass {
 
-	protected static Boolean addUser(List formvaluesList) {
+	protected static Boolean addUser(List formvaluesList, Part imagePart) {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -27,13 +29,14 @@ public class CRUDHandlerClass {
 			}
 			}
 			
-			PreparedStatement ps = connection.prepareStatement("INSERT INTO registration VALUES (default, ?,?,?,?,?)");
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO registration VALUES (default, ?,?,?,?,?,?)");
 
 			ps.setString(1, formvaluesList.get(0).toString());
 			ps.setString(2, formvaluesList.get(1).toString());
 			ps.setString(3, formvaluesList.get(2).toString());
 			ps.setString(4, formvaluesList.get(3).toString());
 			ps.setString(5, formvaluesList.get(4).toString());
+			ps.setBinaryStream(6, imagePart.getInputStream());
 
 			ps.executeUpdate();
 			System.out.println("The record has been entered into the database!");
