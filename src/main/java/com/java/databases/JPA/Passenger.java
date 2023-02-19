@@ -1,5 +1,6 @@
 package com.java.databases.JPA;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -25,14 +27,14 @@ public class Passenger {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Passenger_ID")
-	private String passengerID;
+	private int  passengerID;
 	
-	@ManyToMany
+	@ManyToOne
 	@JoinColumn(name = "Airport_ID")
 	private Airport airport;
 	
 	@OneToMany(mappedBy = "passenger")
-	private List<Ticket> tickets;
+	private List<Ticket> tickets = new ArrayList<>();;
 	
 		public Passenger() {
 		super();
@@ -40,7 +42,7 @@ public class Passenger {
 	}
 
 
-	public Passenger(String passengerName, String passengerID, Airport airport) {
+	public Passenger(String passengerName, int passengerID, Airport airport) {
 		super();
 		this.passengerName = passengerName;
 		this.passengerID = passengerID;
@@ -58,12 +60,12 @@ public class Passenger {
 	}
 
 
-	public String getPassengerID() {
+	public int getPassengerID() {
 		return passengerID;
 	}
 
 
-	public void setPassengerID(String passengerID) {
+	public void setPassengerID(int passengerID) {
 		this.passengerID = passengerID;
 	}
 

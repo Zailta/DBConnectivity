@@ -15,9 +15,9 @@ public class Ticket {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String ticketID;
+	private int ticketID;
 	@Column(name = "Ticket_Code")
-	private TicketHashCodeGenerator ticketHashCodeGenerator;
+	private String ticketHashCodeGenerator;
 	
 	@ManyToOne
 	@JoinColumn(name = "Passenger_ID")
@@ -26,23 +26,31 @@ public class Ticket {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Ticket(String ticketID, TicketHashCodeGenerator ticketHashCodeGenerator) {
+	
+	public Ticket(int ticketID, String ticketHashCodeGenerator, Passenger passenger) {
 		super();
 		this.ticketID = ticketID;
 		this.ticketHashCodeGenerator = ticketHashCodeGenerator;
+		this.passenger = passenger;
 	}
-	public String getTicketID() {
+
+
+
+	public int getTicketID() {
 		return ticketID;
 	}
-	public void setTicketID(String ticketID) {
+	public void setTicketID(int ticketID) {
 		this.ticketID = ticketID;
 	}
-	public TicketHashCodeGenerator getTicketHashCodeGenerator() {
+	
+	public String getTicketHashCodeGenerator() {
 		return ticketHashCodeGenerator;
 	}
-	public void setTicketHashCodeGenerator(TicketHashCodeGenerator ticketHashCodeGenerator) {
+
+	public void setTicketHashCodeGenerator(String ticketHashCodeGenerator) {
 		this.ticketHashCodeGenerator = ticketHashCodeGenerator;
 	}
+
 	public Passenger getPassenger() {
 		return passenger;
 	}

@@ -1,5 +1,6 @@
 package com.java.databases.JPA;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,19 +19,19 @@ public class Airport {
 	private String airportName;
 
 	@Id
+	@Column(name = "Airport_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Airport _ID")
-	private String airportID;
+	private int airportID;
 
 	@OneToMany(mappedBy = "airport")
-	private List<Passenger> passengers;
+	private List<Passenger> passengers = new ArrayList<>();
 
 	public Airport() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Airport(String airportName, String airportID) {
+	public Airport(String airportName, int airportID) {
 		super();
 		this.airportName = airportName;
 		this.airportID = airportID;
@@ -44,11 +45,11 @@ public class Airport {
 		this.airportName = airportName;
 	}
 
-	public String getAirportID() {
+	public int getAirportID() {
 		return airportID;
 	}
 
-	public void setAirportID(String airportID) {
+	public void setAirportID(int airportID) {
 		this.airportID = airportID;
 	}
 
