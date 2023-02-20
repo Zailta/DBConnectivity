@@ -7,9 +7,11 @@ import jakarta.persistence.Persistence;
 public class EntityManagerHandler {
 	public static void main(String[] args) {
 		
+		
 		  EntityManager entityManager =
 		  Persistence.createEntityManagerFactory("unit1").createEntityManager();
 		  entityManager.getTransaction().begin();
+		 
 		 
 		 Airport srinagar = new Airport();
 		 srinagar.setAirportName("Srinagar International Airport");
@@ -27,32 +29,24 @@ public class EntityManagerHandler {
 		 bangalore.addPassenger(azam);
 
 		 Ticket srinagarTicket = new Ticket();
-		 srinagarTicket.setTicketHashCodeGenerator("SGR12345");
 		 srinagarTicket.setPassenger(mannan);
 		 mannan.addTickets(srinagarTicket);
 		 
 		 Ticket bangaloreTicket = new Ticket();
-		 bangaloreTicket.setTicketHashCodeGenerator("BLR56789");
 		 bangaloreTicket.setPassenger(azam);
 		 azam.addTickets(bangaloreTicket);
 		 
-		
-		 
-		 
-		
-		
-		 
-			
-			  entityManager.persist(srinagar);
-			  entityManager.persist(bangalore);
-			  entityManager.persist(mannan); 
-			  entityManager.persist(azam);
+
+			  entityManager.persist(srinagar); entityManager.persist(bangalore);
+			  entityManager.persist(mannan); entityManager.persist(azam);
 			  entityManager.persist(srinagarTicket);
 			  entityManager.persist(bangaloreTicket);
 			  
 			  
 			  
-			  entityManager.getTransaction().commit(); entityManager.close();
+			  entityManager.getTransaction().commit(); 
+			  entityManager.close();
+			 
 			 
 		 
 	}

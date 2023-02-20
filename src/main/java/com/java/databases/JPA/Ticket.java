@@ -1,6 +1,9 @@
 package com.java.databases.JPA;
 
+import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,21 +19,23 @@ public class Ticket {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ticketID;
-	@Column(name = "Ticket_Code")
-	private String ticketHashCodeGenerator;
+	
+	@Embedded
+	@AttributeOverride(name = "ticketCode", column = @Column(name = "Ticket_Code"))
+	private TicketHashCodeGenerator ticketHashCodeGenerator;
 	
 	@ManyToOne
 	@JoinColumn(name = "Passenger_ID")
 	private Passenger passenger;
 	public Ticket() {
 		super();
-		// TODO Auto-generated constructor stub
+		TicketHashCodeGenerator ticketCode = new TicketHashCodeGenerator();
+		setTicketHashCodeGenerator(ticketCode);
 	}
 	
-	public Ticket(int ticketID, String ticketHashCodeGenerator, Passenger passenger) {
+	public Ticket(int ticketID,Passenger passenger) {
 		super();
 		this.ticketID = ticketID;
-		this.ticketHashCodeGenerator = ticketHashCodeGenerator;
 		this.passenger = passenger;
 	}
 
@@ -43,19 +48,18 @@ public class Ticket {
 		this.ticketID = ticketID;
 	}
 	
-	public String getTicketHashCodeGenerator() {
-		return ticketHashCodeGenerator;
-	}
-
-	public void setTicketHashCodeGenerator(String ticketHashCodeGenerator) {
-		this.ticketHashCodeGenerator = ticketHashCodeGenerator;
-	}
-
 	public Passenger getPassenger() {
 		return passenger;
 	}
 	public void setPassenger(Passenger passenger) {
 		this.passenger = passenger;
+	}
+	public TicketHashCodeGenerator getTicketHashCodeGenerator() {
+		return ticketHashCodeGenerator;
+	}
+
+	public void setTicketHashCodeGenerator(TicketHashCodeGenerator ticketHashCodeGenerator) {
+		this.ticketHashCodeGenerator = ticketHashCodeGenerator;
 	}
 	
 	
