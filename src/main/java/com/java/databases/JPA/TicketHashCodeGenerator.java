@@ -5,7 +5,7 @@ import java.util.Random;
 
 import jakarta.persistence.Embeddable;
 @Embeddable
-public class TicketHashCodeGenerator {
+public class TicketHashCodeGenerator implements Serializable {
 	
 	public TicketHashCodeGenerator() {
 		super();
@@ -34,7 +34,7 @@ public class TicketHashCodeGenerator {
 	    String  randomNumber = Integer.toString((int)(new Random().nextInt(99)+1));
 
 	    System.out.println(randomNumber+"-"+generatedString);
-	    return randomNumber+generatedString;
+	    return randomNumber+"-"+generatedString;
 	}
 
 

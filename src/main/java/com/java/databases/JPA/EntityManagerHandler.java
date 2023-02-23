@@ -1,5 +1,7 @@
 package com.java.databases.JPA;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -28,17 +30,25 @@ public class EntityManagerHandler {
 		 azam.setAirport(bangalore);
 		 bangalore.addPassenger(azam);
 
-		 Ticket srinagarTicket = new Ticket();
+		 OneWayTicket srinagarTicket = new OneWayTicket();
 		 srinagarTicket.setPassenger(mannan);
+		 srinagarTicket.setSourceDestination("DEL");
+		 srinagarTicket.setLatestDepartureDate(LocalDate.of(2023, 03, 8));
 		 mannan.addTickets(srinagarTicket);
 		 
-		 Ticket bangaloreTicket = new Ticket();
+		 ReturnTicket bangaloreTicket = new ReturnTicket();
 		 bangaloreTicket.setPassenger(azam);
+		 bangaloreTicket.setLatestDepartureDate(LocalDate.of(2023, 05, 11));
+		 bangaloreTicket.setSourceDestination("CHE");
+		 bangaloreTicket.setReturnDestination("ANR");
+		 bangaloreTicket.setLatestReturnDate(LocalDate.of(2023, 11, 15));
 		 azam.addTickets(bangaloreTicket);
 		 
 
-			  entityManager.persist(srinagar); entityManager.persist(bangalore);
-			  entityManager.persist(mannan); entityManager.persist(azam);
+			  entityManager.persist(srinagar); 
+			  entityManager.persist(bangalore);
+			  entityManager.persist(mannan); 
+			  entityManager.persist(azam);
 			  entityManager.persist(srinagarTicket);
 			  entityManager.persist(bangaloreTicket);
 			  
