@@ -7,7 +7,8 @@ public class FlightGenerator {
 
 	public FlightGenerator() {
 		super();
-		setFlightId();
+		String flightId = hashCodeGenerator();
+		setFlightId(flightId);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -15,8 +16,8 @@ public class FlightGenerator {
 		return flightId;
 	}
 
-	public void setFlightId() {
-		this.flightId = hashCodeGenerator();
+	public void setFlightId(String flightId) {
+		this.flightId = flightId;
 	}
 	
 	public static String hashCodeGenerator() {
@@ -31,7 +32,7 @@ public class FlightGenerator {
 	      .toString();
 	    String  randomNumber = Integer.toString((int)(new Random().nextInt(9999)+1));
 
-	    System.out.println(generatedString+randomNumber);
+	    //System.out.println(generatedString+randomNumber);
 	    return generatedString+randomNumber;
 	}
 }

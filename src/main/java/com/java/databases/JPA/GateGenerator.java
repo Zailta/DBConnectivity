@@ -7,7 +7,8 @@ public class GateGenerator {
 
 	public GateGenerator() {
 		super();
-		setGateId();
+		String gateId = hashCodeGenerator();
+		setGateId(gateId);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -15,8 +16,8 @@ public class GateGenerator {
 		return gateId;
 	}
 
-	public void setGateId() {
-		this.gateId = hashCodeGenerator();
+	public void setGateId(String gateId) {
+		this.gateId = gateId;
 	}
 	
 	public static String hashCodeGenerator() {
@@ -31,11 +32,7 @@ public class GateGenerator {
 	      .toString();
 	    String  randomNumber = Integer.toString((int)(new Random().nextInt(9)+1));
 
-	    System.out.println(randomNumber+generatedString);
+	    //System.out.println(randomNumber+generatedString);
 	    return randomNumber+generatedString;
 	}
-	public static void main(String[] args) {
-		GateGenerator gateGenerator = new GateGenerator();
-	}
-
 }

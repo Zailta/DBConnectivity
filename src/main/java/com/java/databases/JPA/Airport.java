@@ -8,6 +8,7 @@ import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,7 +26,7 @@ public class Airport {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int airportID;
 
-	@OneToMany(mappedBy = "airport")
+	@OneToMany( mappedBy = "airport")
 	private List<Passenger> passengers = new ArrayList<>();
 	
 	@Embedded

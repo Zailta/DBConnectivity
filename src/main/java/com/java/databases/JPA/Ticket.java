@@ -6,6 +6,7 @@ import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,13 +27,18 @@ public class Ticket {
 	@AttributeOverride(name = "ticketCode", column = @Column(name = "Ticket_Code"))
 	private TicketHashCodeGenerator ticketHashCodeGenerator;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Passenger_ID")
 	private Passenger passenger;
 	public Ticket() {
 		super();
 		TicketHashCodeGenerator ticketCode = new TicketHashCodeGenerator();
 		setTicketHashCodeGenerator(ticketCode);
+	}
+	public Ticket(TicketHashCodeGenerator hashCodeGenerator) {
+		super();
+		this.ticketHashCodeGenerator = hashCodeGenerator;
+		
 	}
 	
 	public Ticket(Passenger passenger) {

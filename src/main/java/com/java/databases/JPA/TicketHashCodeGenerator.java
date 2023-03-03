@@ -7,18 +7,23 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class TicketHashCodeGenerator implements Serializable {
 	
-	public TicketHashCodeGenerator() {
+	public TicketHashCodeGenerator(){
 		super();
-		setTicketCode();
+		String TicketHashCode = hashCodeGenerator();
+		setTicketCode(TicketHashCode);
 	}
 
 	private String ticketCode ;
  
+	public TicketHashCodeGenerator(String ticketCode) {
+		super();
+		this.ticketCode = ticketCode;
+	}
 	public String getTicketCode() {
 		return ticketCode;
 	}
-	public void setTicketCode() {
-		ticketCode = hashCodeGenerator();
+	public void setTicketCode(String ticketCode) {
+		this.ticketCode = ticketCode;
 	}
 	
 	public static String hashCodeGenerator() {
@@ -33,8 +38,9 @@ public class TicketHashCodeGenerator implements Serializable {
 	      .toString();
 	    String  randomNumber = Integer.toString((int)(new Random().nextInt(99)+1));
 
-	    System.out.println(randomNumber+"-"+generatedString);
-	    return randomNumber+"-"+generatedString;
+	   // System.out.println(randomNumber+"-"+generatedString);
+
+	   return randomNumber+"-"+generatedString;
 	}
 
 

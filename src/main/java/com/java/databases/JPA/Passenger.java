@@ -8,6 +8,7 @@ import javax.annotation.Generated;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,11 +30,11 @@ public class Passenger {
 	@Column(name = "Passenger_ID")
 	private int  passengerID;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Airport_ID")
 	private Airport airport;
 	
-	@OneToMany(mappedBy = "passenger")
+	@OneToMany( mappedBy = "passenger")
 	private List<Ticket> tickets = new ArrayList<>();;
 	
 		public Passenger() {

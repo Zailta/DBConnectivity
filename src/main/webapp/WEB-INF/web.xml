@@ -4,19 +4,31 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
   <servlet>
   	<servlet-name>RequesthandlerClass</servlet-name>
   	<display-name>RequesthandlerClass</display-name>
   	<description></description>
-  	<servlet-class>com.java.databases.jdbc.RequesthandlerClass</servlet-class>
+  	<servlet-class>com.java.databases.JPA.RequesthandlerClass</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UIHandler</servlet-name>
+  	<display-name>UIHandler</display-name>
+  	<description></description>
+  	<servlet-class>com.java.databases.JPA.UIHandler</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>RequesthandlerClass</servlet-name>
   	<url-pattern>/RequesthandlerClass</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UIHandler</servlet-name>
+  	<url-pattern>/UIHandler</url-pattern>
+  </servlet-mapping>
+ 
   
   <welcome-file-list> 
-  <welcome-file>loginPage.jsp</welcome-file>
+  <welcome-file>ticketCodeRetreiver.jsp</welcome-file>
   </welcome-file-list>
   
 </web-app>
