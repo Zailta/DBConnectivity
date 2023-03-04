@@ -14,11 +14,13 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "Ticket_Type")
 public class Ticket {
 	
@@ -30,6 +32,7 @@ public class Ticket {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Passenger_ID")
 	private Passenger passenger;
+
 	public Ticket() {
 		super();
 		TicketHashCodeGenerator ticketCode = new TicketHashCodeGenerator();
@@ -60,7 +63,6 @@ public class Ticket {
 	private void setTicketHashCodeGenerator(TicketHashCodeGenerator ticketHashCodeGenerator) {
 		this.ticketHashCodeGenerator = ticketHashCodeGenerator;
 	}
-	
 	
 	
 }

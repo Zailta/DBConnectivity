@@ -14,6 +14,7 @@ public class ReturnTicket extends Ticket{
 	private LocalDate latestReturnDate;
 	private String sourceDestination;
 	private String returnDestination;
+	
 	public LocalDate getLatestDepartureDate() {
 		return latestDepartureDate;
 	}

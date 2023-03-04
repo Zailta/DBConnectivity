@@ -23,7 +23,9 @@ public class UIHandler extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String ticketcode = request.getParameter("ticketCode");
 		String findTicket = EntityManagerHandler.findTicket(ticketcode);
-		response.getWriter().println(findTicket);
+		response.getWriter().println("hello");
+		response.getWriter().close();
+		
 		
 	}
 

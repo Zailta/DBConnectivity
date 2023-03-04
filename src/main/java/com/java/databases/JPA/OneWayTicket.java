@@ -12,6 +12,7 @@ public class OneWayTicket extends Ticket {
 
 	private LocalDate latestDepartureDate;
 	private String sourceDestination;
+	
 	public LocalDate getLatestDepartureDate() {
 		return latestDepartureDate;
 	}
