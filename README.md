@@ -25,7 +25,7 @@ In addition to the technologies mentioned above, we also utilize the Embeddable 
 1. Embeddable Annotation: We use the Embeddable annotation to define a composite primary key for our Ticket entity. This allows us to combine multiple columns into a single primary key, which can be useful when dealing with complex relationships between entities.
 2. Inheritance Annotation: We use the Inheritance annotation to implement inheritance in our Ticket entity hierarchy. Specifically, we have used the Join Table strategy to store all the entities in a Multiple table. This allows us to model relationships between different types of tickets (e.g. Oneway, Round) in a flexible and extensible way.
 
-To use our Embeddable and Inheritance annotations in your own project, simply import the relevant Hibernate packages and add the appropriate annotations to your entity classes.**
+To use our Embeddable and Inheritance annotations in your own project, simply import the relevant Hibernate packages and add the appropriate annotations to your entity classes.
 
 ### To get started with our application, follow these steps:
 1. Clone the repository to your local machine.
