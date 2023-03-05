@@ -7,12 +7,12 @@ This project is a mockup for using JDBC and JPA Hibernate
 JDBC is depected through CRUD operations performed over SQL DB
 
 JPA is depected throgh a ticket persistence and retrieval process using:
-**1.Java
-2.Jakarta Servlet
-3.JPA
-4.AJAX
-5.GSON and 
-6.JSON Object.**
+**1. Java
+2. Jakarta Servlet
+3. JPA
+4. AJAX
+5. GSON and 
+6. JSON Object.**
 
 This project aims to provide a simple and efficient way of managing tickets using these technologies. Here are the key features of our project:
 
