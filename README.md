@@ -5,15 +5,15 @@ Welcome to the README file.
 This project is a mockup for using JDBC and JPA Hibernate.
 JDBC is depected through CRUD operations performed over SQL DB.
 
-JPA is depected throgh a ticket persistence and retrieval process using:
-##Prerequisites:
+JPA is depected throgh a ticket persistence and retrieval process using following stack.
+#Prerequisites:
 1. Java.
 2. Jakarta Servlet.
 3. JPA.
 4. AJAX.
 5. GSON and. 
 6. JSON Object.
-##Description:
+#Description:
 This project aims to provide a simple and efficient way of managing tickets using these technologies. Here are the key features of our project:
 
 **1.Persistence: We use JPA to persist ticket information to a database. This allows us to store and retrieve tickets as needed, ensuring that they are available even after the application is restarted.
