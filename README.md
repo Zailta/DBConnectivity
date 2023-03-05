@@ -23,13 +23,13 @@ This project aims to provide a simple and efficient way of managing tickets usin
 
 In addition to the technologies mentioned above, we also utilize the Embeddable and Inheritance annotations from Hibernate. Here's how we use them in our project:
 1. Embeddable Annotation: We use the Embeddable annotation to define a composite primary key for our Ticket entity. This allows us to combine multiple columns into a single primary key, which can be useful when dealing with complex relationships between entities.
-2. Inheritance Annotation: We use the Inheritance annotation to implement inheritance in our Ticket entity hierarchy. Specifically, we use the Single Table strategy to store all the entities in a single table, with a discriminator column indicating the type of each entity. This allows us to model relationships between different types of tickets (e.g. bug reports, feature requests) in a flexible and extensible way.
+2. Inheritance Annotation: We use the Inheritance annotation to implement inheritance in our Ticket entity hierarchy. Specifically, we have used the Join Table strategy to store all the entities in a Multiple table. This allows us to model relationships between different types of tickets (e.g. Oneway, Round) in a flexible and extensible way.
 
 To use our Embeddable and Inheritance annotations in your own project, simply import the relevant Hibernate packages and add the appropriate annotations to your entity classes.**
 
 ### To get started with our application, follow these steps:
-Clone the repository to your local machine.
-Import the project into your IDE of choice (e.g. Eclipse, IntelliJ).
-Build and run the project using a server of your choice (e.g. Apache Tomcat).
-Navigate to the application's homepage and start managing your tickets!
-We hope you find our project helpful and easy to use. If you have any questions or feedback, please feel free to reach out to us.
+1. Clone the repository to your local machine.
+2. Import the project into your IDE of choice (e.g. Eclipse, IntelliJ).
+3. Build and run the project using a server of your choice (e.g. Apache Tomcat).
+4. Navigate to the application's homepage and start managing your tickets!
+5. We hope you find our project helpful and easy to use. If you have any questions or feedback, please feel free to reach out to us.
