@@ -51,7 +51,6 @@
 										<td><button type="submit" class="btn  purple accent-4" >Submit</button></td>
 									</tr>
 								</table>
-								<h3 id="result"></h3>
 								<input type="hidden" name="crudCall" value="search">
 							</form>
 							<br /> <br />
@@ -70,14 +69,21 @@
 			$("#ticketinfo").show();
 			$("#searchForm").on('submit', function(event) {
 				event.preventDefault();
-				
 				$.ajax({
 					url : 'UIHandler',
 					data : $("#searchForm").serialize(),
 					type : 'POST',
+		            dataType: "json",
 					success : function(data, textStatus, jqHXR) {
-						$('#result').html("");
-						$("#result").append("<b>Ticket Owner:</b> " + data.ticket.ticketHashCodeGenerator + "");
+						$('#airportName').append(data.retreiverBean.airportName);
+						$('#flightId').append(data.retreiverBean.flightId);
+						$('#gateId').append(data.retreiverBean.gateNumber);
+						$('#ticketId').append(data.retreiverBean.ticketId);
+						$('#ticketOwner').append(data.retreiverBean.ticketOwnerName);
+						$('#ticketType').append(data.retreiverBean.ticketType);
+						$('#latestDepartureDate').append(data.retreiverBean.latestDepartureDate);
+						$('#latestReturnDate').append(data.retreiverBean.latestReturnDate);
+						
 						$("#ticketinfo").hide();
 						$("#ticketForm").show();
 					},
@@ -93,41 +99,42 @@
 </body>
 <br>
 <br>
-<div class="container">
+
+<div class="container" id = "result">
 		<div class="row">
 			<div class="col  m12 offset-m0">
 				<div class="card">
 					<div class="card-content">
 						<div class="form center-align">
 						<h6 id = "ticketinfo">Ticket Information will be displayed Here!</h6>
-						<div class = "ticket"></div>
-						<form method="post" action="UIHandler" id="ticketForm">
+						<div class = "ticket" ></div>
+						<form id = "ticketForm">
 								<table>
 								<tr>
 										<td>Airport Name:</td>
-										<td>Srinagar International Airport</td>
+										<td id = "airportName" ></td>
 										<td>Flight ID:</td>
-										<td>RFD7688</td>
+										<td id = "flightId"></td>
 										<td>Gate No.:</td>
-										<td>6H</td>
+										<td id = "gateId"></td>
 									</tr>
 									<tr>
 										<td>Ticket ID:</td>
-										<td>26-QTOVCDV</td>
+										<td id  = "ticketId"></td>
 										<td>Ticket Name:</td>
-										<td>Mohammad Manaan Bhat</td>
+										<td id = "ticketOwner"></td>
 									</tr>
 
 									<tr>
 										<td>Ticket Type:</td>
-										<td>OneWay Ticket</td>
+										<td id= "ticketType"></td>
 										<td>Latest Departure Date:</td>
-										<td>2023-03-08</td>
+										<td id = "latestDepartureDate"></td>
 										<td>Latest Return Date:</td>
-										<td>N/A</td>
+										<td id = "latestReturnDate"></td>
 									</tr>
 								</table>
-							</form>
+									</form>
 							<div class = "aeroplane"></div>
 						</div>
 					</div>

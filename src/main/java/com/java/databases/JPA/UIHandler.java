@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.JsonObject;
+
 /**
  * Servlet implementation class UIHandler
  */
@@ -22,8 +24,10 @@ public class UIHandler extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String ticketcode = request.getParameter("ticketCode");
-		String findTicket = EntityManagerHandler.findTicket(ticketcode);
-		response.getWriter().println("hello");
+		 JsonObject TicketObject = EntityManagerHandler.findTicket(ticketcode);
+		 System.out.println(TicketObject);
+		 
+		response.getWriter().println(TicketObject.toString());
 		response.getWriter().close();
 		
 		

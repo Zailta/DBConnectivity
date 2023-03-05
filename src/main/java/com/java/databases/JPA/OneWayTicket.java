@@ -8,7 +8,7 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("OneWayTicket")
-public class OneWayTicket extends Ticket {
+public class OneWayTicket extends Ticket implements TicketType {
 
 	private LocalDate latestDepartureDate;
 	private String sourceDestination;
@@ -24,6 +24,26 @@ public class OneWayTicket extends Ticket {
 	}
 	public void setSourceDestination(String sourceDestination) {
 		this.sourceDestination = sourceDestination;
+	}
+	@Override
+	public LocalDate getLatestReturnDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getReturnDestination() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void setReturnDestination(String returnDestination) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setLatestReturnDate(LocalDate latestReturnDate) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
