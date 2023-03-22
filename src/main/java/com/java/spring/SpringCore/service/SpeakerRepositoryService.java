@@ -8,6 +8,9 @@ import com.java.spring.SpringCore.repository.SpeakerRepositoryImpl;
 
 public class SpeakerRepositoryService implements SpeakerService {
 	SpeakerRepository repository;
+	public SpeakerRepositoryService (SpeakerRepository repository) {
+		this.repository = repository;
+	}
 	@Override
 	public List <Speaker>findAll(){
 		return repository.findAll();
