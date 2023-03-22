@@ -1,7 +1,11 @@
 package com.java.spring.SpringCore.repository;
 import java.util.*;
+
+import org.springframework.stereotype.Repository;
+
 import com.java.spring.SpringCore.model.Speaker;
 
+@Repository
 public class SpeakerRepositoryImpl implements SpeakerRepository{
 	
 	public List <Speaker>findAll(){

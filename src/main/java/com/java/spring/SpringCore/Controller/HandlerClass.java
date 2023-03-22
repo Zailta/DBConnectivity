@@ -13,7 +13,7 @@ public class HandlerClass {
 		// TODO Auto-generated method stub
 		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 		
-		SpeakerService service = applicationContext.getBean("speakerService", SpeakerService.class);
+		SpeakerService service = applicationContext.getBean(SpeakerService.class);
 		System.out.println(service.findAll().get(0).getFirstName());
 
 	}
